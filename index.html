@@ -231,6 +231,101 @@ footer{
 }
 footer .ig{color:var(--gold);font-weight:600;font-size:14px;display:inline-block;margin-bottom:8px}
 
+/* ===== ANIMATIONS ===== */
+@keyframes fadeUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideLeft{from{opacity:0;transform:translateX(-40px)}to{opacity:1;transform:translateX(0)}}
+@keyframes slideRight{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
+@keyframes scaleIn{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:scale(1)}}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+@keyframes pulse{0%,100%{box-shadow:0 4px 24px rgba(212,168,83,.3)}50%{box-shadow:0 4px 40px rgba(212,168,83,.6)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes glow{0%,100%{text-shadow:0 0 8px rgba(212,168,83,.3)}50%{text-shadow:0 0 20px rgba(212,168,83,.6)}}
+@keyframes countUp{from{opacity:0;transform:translateY(20px) scale(.8)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes checkIn{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:translateX(0)}}
+@keyframes borderGlow{0%,100%{border-color:rgba(212,168,83,.25)}50%{border-color:rgba(212,168,83,.5)}}
+
+/* Hero animations */
+.hero-eyecatch{animation:fadeIn 1s ease .2s both}
+.hero h1{animation:fadeUp .8s ease .4s both}
+.hero .sub{animation:fadeIn 1s ease .8s both}
+.hero .sub-strong{animation:fadeUp .8s ease 1s both}
+.hero .cta-btn{animation:scaleIn .6s ease 1.3s both,pulse 3s ease 2.5s infinite}
+.hero::after{
+  content:'';position:absolute;top:0;left:-100%;width:50%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(212,168,83,.03),transparent);
+  animation:shimmer 4s ease 2s infinite;pointer-events:none;
+}
+
+/* Scroll-triggered animations */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-40px);transition:opacity .7s ease,transform .7s ease}
+.reveal-left.visible{opacity:1;transform:translateX(0)}
+.reveal-scale{opacity:0;transform:scale(.9);transition:opacity .6s ease,transform .6s ease}
+.reveal-scale.visible{opacity:1;transform:scale(1)}
+
+/* Staggered children */
+.stagger .sol-card,.stagger .flow-step,.stagger .check-list li,.stagger .num-item{
+  opacity:0;transform:translateY(30px);transition:opacity .5s ease,transform .5s ease;
+}
+.stagger.visible .sol-card,.stagger.visible .flow-step,.stagger.visible .check-list li,.stagger.visible .num-item{
+  opacity:1;transform:translateY(0);
+}
+.stagger.visible > :nth-child(1),.stagger.visible :nth-child(1){transition-delay:.05s}
+.stagger.visible > :nth-child(2),.stagger.visible :nth-child(2){transition-delay:.15s}
+.stagger.visible > :nth-child(3),.stagger.visible :nth-child(3){transition-delay:.25s}
+.stagger.visible > :nth-child(4),.stagger.visible :nth-child(4){transition-delay:.35s}
+.stagger.visible > :nth-child(5),.stagger.visible :nth-child(5){transition-delay:.45s}
+.stagger.visible > :nth-child(6),.stagger.visible :nth-child(6){transition-delay:.55s}
+
+/* Compare table row animations */
+.compare-table tbody tr{opacity:0;transform:translateX(-20px);transition:opacity .4s ease,transform .4s ease}
+.compare-table.visible tbody tr{opacity:1;transform:translateX(0)}
+.compare-table.visible tbody tr:nth-child(1){transition-delay:.1s}
+.compare-table.visible tbody tr:nth-child(2){transition-delay:.18s}
+.compare-table.visible tbody tr:nth-child(3){transition-delay:.26s}
+.compare-table.visible tbody tr:nth-child(4){transition-delay:.34s}
+.compare-table.visible tbody tr:nth-child(5){transition-delay:.42s}
+.compare-table.visible tbody tr:nth-child(6){transition-delay:.50s}
+.compare-table.visible tbody tr:nth-child(7){transition-delay:.58s}
+.compare-table.visible tbody tr:nth-child(8){transition-delay:.66s}
+
+/* Price card glow */
+.price-card{animation:borderGlow 3s ease infinite;animation-play-state:paused}
+.price-card.visible{animation-play-state:running}
+.price-amount .num{transition:color .3s}
+
+/* Tagline */
+.tagline p{opacity:0;transform:scale(.9);transition:opacity .8s ease,transform .8s ease}
+.tagline.visible p{opacity:1;transform:scale(1)}
+.tagline.visible .em{animation:glow 2s ease 1s infinite}
+
+/* CTA button float on scroll */
+.form-box.visible .submit-btn{animation:float 3s ease 1s infinite}
+
+/* Smooth hover on cards */
+.sol-card{transition:border-color .3s,transform .3s,box-shadow .3s}
+.sol-card:hover{box-shadow:0 8px 32px rgba(212,168,83,.15)}
+
+/* Number counter style */
+.num-item .big{transition:transform .3s}
+.num-item:hover .big{transform:scale(1.1)}
+
+/* ===== PARTICLES ===== */
+.particles{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:hidden}
+.particle{
+  position:absolute;width:3px;height:3px;border-radius:50%;
+  background:var(--gold);opacity:0;
+  animation:particleFloat 6s ease-in-out infinite;
+}
+@keyframes particleFloat{
+  0%{opacity:0;transform:translateY(0) scale(0)}
+  20%{opacity:.4}
+  80%{opacity:.2}
+  100%{opacity:0;transform:translateY(-200px) scale(1)}
+}
+
 /* ===== RESPONSIVE ===== */
 @media(max-width:640px){
   .hero{padding:72px 16px 56px}
@@ -239,12 +334,19 @@ footer .ig{color:var(--gold);font-weight:600;font-size:14px;display:inline-block
   .form-box{padding:28px 20px}
   .price-card{padding:40px 24px}
 }
+@media(prefers-reduced-motion:reduce){
+  *{animation:none !important;transition:none !important}
+  .reveal,.reveal-left,.reveal-scale,
+  .stagger .sol-card,.stagger .flow-step,.stagger .check-list li,.stagger .num-item,
+  .compare-table tbody tr,.tagline p{opacity:1 !important;transform:none !important}
+}
 </style>
 </head>
 <body>
 
 <!-- HERO -->
 <section class="hero">
+  <div class="particles" id="particles"></div>
   <div class="inner">
     <div class="hero-eyecatch">ガールズバー・キャバクラ専用POS</div>
     <h1>その計算、まだ<br><span class="accent">人</span>がやってますか？</h1>
@@ -260,9 +362,9 @@ footer .ig{color:var(--gold);font-weight:600;font-size:14px;display:inline-block
 <!-- PAIN POINTS -->
 <section class="pain">
   <div class="inner">
-    <div class="section-label">Problem</div>
-    <h2 class="section-title">こんなことで困ってませんか？</h2>
-    <ul class="check-list">
+    <div class="section-label reveal">Problem</div>
+    <h2 class="section-title reveal">こんなことで困ってませんか？</h2>
+    <ul class="check-list stagger">
       <li>指名や場内、同伴の計算が<span class="highlight">毎回大変</span></li>
       <li>ドリンクバックが合わず<span class="highlight">キャストともめる</span></li>
       <li>お店ごとのルールがPOSに合わない</li>
@@ -275,9 +377,9 @@ footer .ig{color:var(--gold);font-weight:600;font-size:14px;display:inline-block
 <!-- SOLUTION -->
 <section class="solution">
   <div class="inner">
-    <div class="section-label">Solution</div>
-    <h2 class="section-title">POS Start が、全部解決します</h2>
-    <div class="sol-grid">
+    <div class="section-label reveal">Solution</div>
+    <h2 class="section-title reveal">POS Start が、全部解決します</h2>
+    <div class="sol-grid stagger">
       <div class="sol-card">
         <span class="sol-icon">&#9889;</span>
         <h3>業務特化・自動計算</h3>
@@ -321,7 +423,7 @@ footer .ig{color:var(--gold);font-weight:600;font-size:14px;display:inline-block
 <!-- NUMBERS -->
 <section class="numbers">
   <div class="inner">
-    <div class="num-grid">
+    <div class="num-grid stagger">
       <div class="num-item">
         <div class="big">月20<span class="small">~</span>30<span class="small">時間</span></div>
         <div class="label">の業務時間を削減</div>
@@ -341,9 +443,9 @@ footer .ig{color:var(--gold);font-weight:600;font-size:14px;display:inline-block
 <!-- COMPARE -->
 <section class="compare-sec">
   <div class="inner">
-    <div class="section-label">Why POS Start?</div>
-    <h2 class="section-title">他のPOSとのちがい</h2>
-    <table class="compare-table">
+    <div class="section-label reveal">Why POS Start?</div>
+    <h2 class="section-title reveal">他のPOSとのちがい</h2>
+    <table class="compare-table" id="compareTable">
       <thead>
         <tr><th></th><th>汎用POS</th><th style="color:var(--gold)">POS Start</th></tr>
       </thead>
@@ -364,9 +466,9 @@ footer .ig{color:var(--gold);font-weight:600;font-size:14px;display:inline-block
 <!-- PRICING -->
 <section class="pricing">
   <div class="inner">
-    <div class="section-label">Pricing</div>
-    <h2 class="section-title">シンプルな料金体系</h2>
-    <div class="price-card">
+    <div class="section-label reveal">Pricing</div>
+    <h2 class="section-title reveal">シンプルな料金体系</h2>
+    <div class="price-card reveal-scale">
       <div class="price-badge">ALL-IN-ONE</div>
       <div class="price-amount">
         <span class="yen">月額</span>
@@ -387,16 +489,16 @@ footer .ig{color:var(--gold);font-weight:600;font-size:14px;display:inline-block
 </section>
 
 <!-- TAGLINE -->
-<section class="tagline">
+<section class="tagline" id="tagline">
   <p>「レジ」ではなく<br><span class="em">経営を楽にする</span>POS</p>
 </section>
 
 <!-- FLOW -->
 <section class="flow-sec">
   <div class="inner">
-    <div class="section-label">Flow</div>
-    <h2 class="section-title">導入の流れ</h2>
-    <div class="flow-steps">
+    <div class="section-label reveal">Flow</div>
+    <h2 class="section-title reveal">導入の流れ</h2>
+    <div class="flow-steps stagger">
       <div class="flow-step">
         <div class="step-num">1</div>
         <h4>お問い合わせ</h4>
@@ -424,9 +526,9 @@ footer .ig{color:var(--gold);font-weight:600;font-size:14px;display:inline-block
 <!-- FORM -->
 <section class="form-section" id="form">
   <div class="inner">
-    <div class="section-label">Contact</div>
-    <h2 class="section-title">無料デモに申し込む</h2>
-    <div class="form-box">
+    <div class="section-label reveal">Contact</div>
+    <h2 class="section-title reveal">無料デモに申し込む</h2>
+    <div class="form-box reveal">
       <form id="demoForm" action="https://formsubmit.co/hamachan062@gmail.com" method="POST">
         <!-- FormSubmit settings -->
         <input type="hidden" name="_subject" value="POS Start デモ申込み">
@@ -462,5 +564,43 @@ footer .ig{color:var(--gold);font-weight:600;font-size:14px;display:inline-block
   &copy; 2026 POS Start &mdash; 「レジ」ではなく経営を楽にするPOS
 </footer>
 
+<script>
+// Scroll reveal with IntersectionObserver
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal,.reveal-left,.reveal-scale,.stagger,.compare-table,.tagline,.price-card,.form-box').forEach(el => obs.observe(el));
+
+// Hero particles
+(function(){
+  const c = document.getElementById('particles');
+  if (!c) return;
+  for (let i = 0; i < 20; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = Math.random() * 100 + '%';
+    p.style.top = (40 + Math.random() * 60) + '%';
+    p.style.animationDelay = (Math.random() * 6) + 's';
+    p.style.animationDuration = (4 + Math.random() * 4) + 's';
+    p.style.width = p.style.height = (2 + Math.random() * 3) + 'px';
+    c.appendChild(p);
+  }
+})();
+
+// Number counter animation
+function animateCounters() {
+  document.querySelectorAll('.num-item .big').forEach(el => {
+    if (el.dataset.counted) return;
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight * 0.85) {
+      el.dataset.counted = '1';
+      el.style.animation = 'countUp .6s ease both';
+    }
+  });
+}
+window.addEventListener('scroll', animateCounters, { passive: true });
+animateCounters();
+</script>
 </body>
 </html>
